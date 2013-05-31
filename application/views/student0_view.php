@@ -16,7 +16,7 @@
  
  <?php if($errors){?>
  <div style="background:red:color:white;">
- <?php =$errors?>   
+ <?php echo $errors?>   
  
 <?php 
 /*
