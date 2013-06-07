@@ -6,7 +6,8 @@ class book extends CI_Controller {
  function __construct()
  {
    parent::__construct();
-   $this->load->model('user','',TRUE);
+   $this->load->model('users','',TRUE);
+   $this->load->helper('url');
  }
 
  function index()
@@ -19,15 +20,21 @@ class book extends CI_Controller {
 //取出model之QUERY
 function bookrecord()
 {
-	$this->load->model('user','',TRUE);
+	$this->load->library('table');
+	$this->load->model('users','',TRUE);
 	//$this->load->library('table');
-	$result = $this->user->bookrecord();
+	//$result = $this->user->bookrecord();
+	$data['query'] = $this->users->bookrecord();
+	//$result = $this->users->bookrecord();
+	//var_dump($data);
+	
+	/*
 	if($result)
 	{
-		$bookrecord = array();
+		$data['query'] = array();
 		foreach($result as $row)
 		{
-			$result0 = array(
+			$data['query'] = array(
 					 
 					'bookid' => $row->bookid,
 					'book' => $row->book,
@@ -37,18 +44,20 @@ function bookrecord()
 			);
 			//$this->session->set_userdata('logged_in', $sess_array);
 		}
-		return TRUE;
+		//return TRUE;
 	}
 	else
 	{
 		 die("<p>Error in executing the SQL query " . $query . ": " .
         mysql_error() . "</p>");
 	}
+	*/
+	//$data['query']=$this->db->query($query);
 	
-	$this->load->view('student2_view', $result0);
+	$this->load->view('student2_view', $data);
+	
+
+}
 }
 
-
-}
 ?>
-
